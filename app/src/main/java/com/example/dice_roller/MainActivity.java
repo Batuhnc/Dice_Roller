@@ -9,14 +9,11 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.*;
 public class MainActivity extends AppCompatActivity {
@@ -60,15 +57,14 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
     int rnnum;
-    public void roll_the_dice(){
+    public void roll_the_dice(){        //Generating random number
         Random rnd = new Random();
         rnnum = rnd.nextInt(6)+1;
-
     }
-
-        int count = 0;
-
+        int count = 0;      //Otherwise it will stuck at 1
         public void on_button_click (View view){
 
             TextView tv = (TextView) this.findViewById(R.id.num);
@@ -88,17 +84,15 @@ public class MainActivity extends AppCompatActivity {
                 if (GN == rnnum) {
                     count++;
                     score.setText("Score : "+Integer.toString(count));
-                    nice.setText("NİCE ONE");
+                    nice.setText("Congratulations");
 
                 }
                 if(count == 10)
                 {
-                    nice.setText("You are a CHAMPION");
+                    nice.setText("You are Awesome");
                 }
 
             }
-
-
         }
 
         public void on_button2_click(View view){
@@ -111,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 tv.setText(("Number : "+Integer.toString(rnnum)));
             }
 
-            switch (rnnum)
+            switch (rnnum)        //Switch case for questions
             {
                 case 1:
                     question.setText("If you could go anywhere in the world, where would you go?");
@@ -139,10 +133,11 @@ public class MainActivity extends AppCompatActivity {
     {
         // Do something in response to button
         Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText =   (EditText) this.findViewById(R.id.editText);
+        EditText editText = (EditText) findViewById(R.id.editText);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
+
 
 
     }
